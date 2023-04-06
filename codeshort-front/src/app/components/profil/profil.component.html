@@ -1,0 +1,11 @@
+<div class="main">
+    <app-profil-card #card [user]="user" />
+    <div class="list-container">
+        <div class="anecdotes-list">
+            <app-anecdote class="anecdote"
+                *ngFor="let anecdote of anecdotes$ | async" 
+                [anecdote]="anecdote">
+            </app-anecdote>
+        </div>
+    </div>
+</div>

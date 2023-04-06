@@ -1,0 +1,16 @@
+<div class="title">
+    <strong>Ajouter une anecdote</strong>
+</div>
+<form #createAnecdoteForm= "ngForm" (ngSubmit)="onSubmitForm(createAnecdoteForm)">
+    <label>Contenu de l'anecdote</label>
+    <textarea [(ngModel)]="content" id="content" name="content" required>
+    </textarea>
+    <label>Topics</label>
+    <select [(ngModel)]="selectedTopic" (change)="addToTopics()" id="topics" name="topics">
+        <option disabled selected>Sélectionnez un topic</option>
+        <option *ngFor="let topic of topics" value="{{topic}}">{{topic}}</option>
+    </select>
+    <p *ngFor="let x of selectedTopics" (click)="removeFromTopics(x)">{{x}}</p>
+    <button id="main-button" type="submit">Créer</button>
+    <button class="button-form" (click)="goToHome()">Retour au fil</button>
+</form>
