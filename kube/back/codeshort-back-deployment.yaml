@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codeshort-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codeshort-back
+  template:
+    metadata:
+      labels:
+        app: codeshort-back
+    spec:
+      containers:
+       - image: tannndev/codeshort-backend:dev
+         name: codeshort-back
+         ports:
+           - containerPort: 8080
+         env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+               secretKeyRef:
+                 name: postgres-secret
+                 key: postgres-root-password
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+               secretKeyRef:
+                 name: postgres-secret
+                 key: postgres-root-username
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/codeshort

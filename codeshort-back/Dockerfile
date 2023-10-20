@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-alpine
 
-COPY ../target/codeshort-backend-0.0.1-SNAPSHOT.jar .
+COPY ./target/codeshort-backend-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
