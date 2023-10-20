@@ -26,6 +26,8 @@ spec:
               value: pepa-linha
             - name: ADMINER_DEFAULT_SERVER
               value: postgres
+            - name: ADMINER_DEFAULT_SYSTEM
+              value: postgres
           resources:
             limits:
               memory: "256Mi"

@@ -1,79 +1,56 @@
-# Sujet
 
-## Stack Techno :
+# Compte Rendu INFO910 - Introduction DevOps
+#### Antoine Depoisier : antoine.depoisier@etu.univ-smb.fr
 
-* Maven
-* Java
-* Spring
-* Junit 5
-* SonarCloud
-* React
-* github actions
-* Docker
+## Détails de l'application
 
-*Sur le VPS de la classe :*
-* docker-compose
-* Base relationnelle (postgres)
+Cette application a été créée en M1 lors d'un projet avec un autre étudiant, il est référencé dans ```Sujet.md```, mais il n'a pas participé au déploiement de cette application.
 
+Cette application est un genre de réseau social entre développeur qui permet aux développeurs de partager des anecdotes avec les autres développeurs, en les postant en ligne. Les autres utilisateurs de codeshort peuvent ajouter des réactions et des commentaires aux anecdotes. Il faut bien sûr créer un compte pour utiliser l'application.
 
-## Critères d'évaluations :
+Plus de détails sont sur ```Sujet.md```.
 
-* Toutes les fonctionnalités sont présentes
-* Les contraintes techniques sont respectées
-* Le code est propre et les responsabilités sont correctement distribuées
-* La couverture de test du code java dépasse 50%
-* L'application est déployée via le docker-compose partagé de la classe.
-* L'application est polie et prête à être lancée.
+## Création des images Docker
 
+### codeshort-front : 
+- être sous node 18
+- npm install
+- npm run buildDev
+- docker build -t tannndev/codeshort-frontend:dev .
+- docker push tannndev/codeshort-frontend:dev
 
-## Si aucun projet ne vous convient ou vous avez une idée :
+### codeshort-back : 
+- être sous java 17
+- mvn clean install
+- docker build -t tannndev/codeshort-backend:dev .
+- docker push tannndev/codeshort-backend:dev
 
-à discuter avec l'enseignant, la stack tech doit toutefois être respectée
+## Lancement kube avec minikube
 
-## Creation du projet : 
+Dans le dossier kube, exécuter les commandes suivantes :
 
-Les repository sont a créer en publique (pour l'analyse SonarCloud) dans l'organization
+- minikube delete
+- minikube start
 
-par example pour le projet pipo : 
-* pipo-api
-* pipo-web
+- Postgres
+  - kubectl create configmap postgres-initdb-config --from-file=./postgres/init.sql
+  - kubectl apply -f postgres
 
+- Adminer (optionnel)
+  - kubectl apply -f adminer
 
-# CodeShort
-#### Application de tips et d’anecdotes de codes
+- back
+  - kubectl apply -f back
 
-## But
+- front
+  - kubectl apply -f front
 
-L’application permet d’apprendre plein d’informations et divers annecdotes de code sous le format de petits posts en 150-200 caractères max.
+- Dès que tous les services run :
+  - minikube service --all
+  - kubectl port-forward service/codeshort-front 80:80
+  - kubectl port-forward service/codeshort-back 8090:8080
+  - kubectl port-forward service/adminer 8070:8080
 
-## Participants
+L'application est disponible sur l'URL ```http://localhost:80```
 
-* Antoine DEPOISIER (@Tann-dev)
-* Mathis TANGHE (@blurp748)
-
-## Fonctionnalités
-
-* Voir un ensemble de posts de manière infini
-* On peut trier les posts par divers filtres (par langages, par back ou front, type humour ou sérieux ...)
-* Système de compte (Login/Register)
-    * Ajouter un post
-    * Mettre un post en favori
-    * Upvote/Downvote un post
-    * Signaler un post
-    * Ajouter un commentaire sous un post (par exemple pour demander une précision)
-    * Possibilité d’ajouter un lien vers son compte git sur notre profil (afin que d’autres utilisateurs puissent le consulter)
-    * Possible de suivre les autres utilisateurs
-    * A la création de notre compte, entrer les différents sujets qui nous intéressent
-    * Upvote/Downvote les commentaires d'un post
-* Les posts seront sous différents formats (photo, vidéo, texte)
-* Pas de système de message privé entre les utilisateurs
-* On ne voit qu’un seul post à la fois (système de swipe pour changer de post)
-* Voir les post les plus upvote du jour d’avant
-* Algorithme de recommandations selon nos favoris et upvote (optionnel)
-* Version web et version mobile (optionnel)
-
-## Technologies
-
-* PostgreSQL
-* SpringBoot
-* Angular
+Adminer disponible sur l'URL ```http://localhost:8070```, et pour se connecter à la base de donnée, il faut se connecter à la base ```codeshort``` avec pour identifiant et mot de passe ```codeshort```.
