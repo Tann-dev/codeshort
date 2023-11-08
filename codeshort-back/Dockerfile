@@ -1,14 +1,13 @@
 # Build stage
 FROM maven:3.9.5-eclipse-temurin-17-alpine AS build
-COPY src /home/app/src
-COPY pom.xml /home/app
-RUN mvn -B verify --file pom.xml
+COPY . .
+RUN mvn verify
 
 # Package stage
 FROM eclipse-temurin:17-alpine
-COPY --from=build ./home/app/target/*.jar app.jar
+COPY --from=build ./target/*.jar codeshort.jar
 EXPOSE 8080
-CMD ["java", "-jar", "appjar"]
+CMD ["java", "-jar", "codeshort.jar"]
 
 # With github actions
 #FROM eclipse-temurin:17-alpine

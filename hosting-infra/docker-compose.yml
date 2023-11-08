@@ -1,0 +1,164 @@
+version: "2.2"
+
+services:
+  proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: proxy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /srv/docker/proxy/html:/usr/share/nginx/html
+      - ./vhosts:/etc/nginx/vhost.d
+      - /srv/docker/letsencrypt/certs:/etc/nginx/certs:ro
+
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: letsencrypt
+    restart: always
+    depends_on:
+      - proxy
+    environment:
+      - DEFAULT_EMAIL=guillaume@oups.net
+    volumes_from:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /srv/docker/letsencrypt/certs:/etc/nginx/certs
+      - /srv/docker/letsencrypt/acme.sh:/etc/acme.sh
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: postgres-13
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    # Do not expose port publicly
+    #    ports:
+    #      - 5432:5432
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
+      - ./postgres-data:/var/lib/postgresql/data
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=guillaume@oups.net
+      - PGADMIN_DEFAULT_PASSWORD=univ-smb-m1-isc-2020!
+      - VIRTUAL_HOST=pgadmin.oups.net
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=pgadmin.oups.net
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    #    ports:
+    #      - 9090:9090
+    volumes:
+      - ./prometheus-config/global-config.yml:/etc/prometheus/prometheus.yml
+    #    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    environment:
+      - VIRTUAL_HOST=prometheus.oups.net
+      - VIRTUAL_PORT=9090
+      - LETSENCRYPT_HOST=prometheus.oups.net
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    volumes:
+      - ./promtail-config/promtail.yaml:/etc/promtail/docker-config.yaml
+      - ./logs:/logs
+    command: "--config.file=/etc/promtail/docker-config.yaml"
+    depends_on:
+      - loki
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    command: -config.file=/etc/loki/local-config.yaml
+  #    ports:
+  #      - "3100:3100"
+  #    environment:
+  #      - VIRTUAL_HOST=loki.oups.net
+  #      - VIRTUAL_PORT=3100
+  #      - LETSENCRYPT_HOST=loki.oups.net
+
+#  node-exporter:
+#    image: prom/node-exporter
+#    container_name: node-exporter
+#  #    ports:
+#  #      - '9100:9100'
+
+#  cadvisor:
+#    image: google/cadvisor
+#    container_name: cadvisor
+#    volumes:
+#      - /:/rootfs:ro
+#      - /var/run:/var/run:ro
+#      - /sys:/sys:ro
+#      - /var/lib/docker/:/var/lib/docker:ro
+#      - /dev/disk:/dev/disk/:ro
+#  #    ports:
+#  #      - '8082:8080'
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    volumes:
+      - ./grafana-config/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana-config/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./grafana-config/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./grafana-config/example.json:/var/lib/grafana/dashboards/example.json
+    depends_on:
+      - prometheus
+      - loki
+    #    ports:
+    #      - 3000:3000
+    environment:
+      - VIRTUAL_HOST=grafana.oups.net
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=grafana.oups.net
+      - GF_SECURITY_ADMIN_USER=guillaume@oups.net
+      - GF_SECURITY_ADMIN_PASSWORD=univ-smb-m1-isc-2020!
+
+################################################
+# Codeshort
+  codeshort-backend:
+    image: ghcr.io/univ-smb-m1-isc-2022/codeshort-backend/master:latest
+    container_name: codeshort-backend
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - VIRTUAL_HOST=codeshort.api.oups.net
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=codeshort.api.oups.net
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/codeshort
+      - SPRING_DATASOURCE_USERNAME=codeshort
+      - SPRING_DATASOURCE_PASSWORD=codeshort
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - ./logs:/logs
+      - codeshort-backend-resources:/codeshort-backend-resources
+      
+  codeshort-front:
+    image: ghcr.io/univ-smb-m1-isc-2022/codeshort-front/master:latest
+    container_name: codeshort-front
+    restart: always
+    depends_on:
+      - codeshort-backend
+    environment:
+      - VIRTUAL_HOST=codeshort.oups.net
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=codeshort.oups.net
+
+volumes:
+  codeshort-backend-resources:
+  app_data:

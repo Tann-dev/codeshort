@@ -1,0 +1,17 @@
+# IDE
+.idea/
+**/*.iml
+
+#Gradle
+.gradle
+build/
+out/
+
+
+#Maven
+target/
+
+# Run
+git-pull-last-run
+postgres-data/
+vhosts/

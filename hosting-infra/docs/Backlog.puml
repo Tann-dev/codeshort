@@ -1,0 +1,24 @@
+@startmindmap
+
+
+* Backlog
+
+** <&flag> Fix Chuck deployment
+
+** <&flag> Auto deploy DEV & PROD
+
+** <&flag> Permanent DB config
+** <&flag> Backup of DB
+*** Git ?
+*** Mail ?
+** <&flag> Permanent Grafana dashboards (CPU / RAM)
+** <&flag> Permanent Grafana Log Gathering
+** <&flag> Prune old docker container once in a while
+
+
+header
+DevOps Backlog
+endheader
+
+
+@endmindmap
