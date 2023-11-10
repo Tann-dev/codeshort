@@ -21,7 +21,7 @@ services:
       - POSTGRES_DB=codeshort
 
   codeshort-backend:
-    image: tannndev/codeshort-back:0.0.1
+    image: tannndev/codeshort-back:dev
     container_name: codeshort-backend
     build: ./codeshort-back
     restart: always
@@ -38,7 +38,7 @@ services:
       - codeshort-backend-resources:/codeshort-backend-resources
       
   codeshort-front:
-    image: tannndev/codeshort-front:0.0.1
+    image: tannndev/codeshort-front:dev
     container_name: codeshort-front
     build: ./codeshort-front
     restart: always
