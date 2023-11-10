@@ -1,7 +1,7 @@
 # Build stage
 FROM maven:3.9.5-eclipse-temurin-17-alpine AS build
 COPY . .
-RUN mvn verify
+RUN mvn clean verify
 
 # Package stage
 FROM eclipse-temurin:17-alpine
