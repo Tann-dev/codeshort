@@ -6,7 +6,6 @@ RUN mvn clean verify
 # Package stage
 FROM eclipse-temurin:17-alpine
 COPY --from=build ./target/*.jar codeshort.jar
-EXPOSE 8080
 CMD ["java", "-jar", "codeshort.jar"]
 
 # With github actions
