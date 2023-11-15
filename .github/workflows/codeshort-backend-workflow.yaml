@@ -1,4 +1,4 @@
-name: Publish prod image
+name: Publish prod image backend
 
 on:
   push:
@@ -15,8 +15,9 @@ on:
       - '.github/workflows/codeshort-backend-workflow.yaml'
 
 jobs:
-  build:
+  build-backend:
 
+    name: Deploy Spring Boot App
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -54,5 +55,5 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/tann-dev/codeshort-back:latest
+        tags: ghcr.io/tann-dev/codeshort-backend:latest
         context: codeshort-back
