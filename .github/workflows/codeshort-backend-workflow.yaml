@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'codeshort-backend/src/**'
+      - '.github/workflows/codeshort-backend-workflow.yaml'
   pull_request:
     branches:
       - master
+    paths:
+      - 'codeshort-backend/src/**'
+      - '.github/workflows/codeshort-backend-workflow.yaml'
 
 jobs:
   build:
@@ -30,6 +36,6 @@ jobs:
       run: mvn -B package --file codeshort-back/pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn deploy -s $GITHUB_WORKSPACE/codeshort-back/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
