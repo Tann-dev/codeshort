@@ -33,9 +33,11 @@ jobs:
         node-version: '18'
 
     - name: Install NPM Modules
+      working-directory: codeshort-front
       run: npm ci
 
     - name: Build Project
+      working-directory: codeshort-front
       run: npm run buildDev
 
     - name: Set up Docker Buildx
