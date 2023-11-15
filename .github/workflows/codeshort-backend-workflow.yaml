@@ -54,5 +54,5 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: tanndev/codeshort-back:latest
+        tags: ghcr.io/Tann-dev/codeshort-back:latest
         context: codeshort-back
