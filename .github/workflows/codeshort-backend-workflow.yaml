@@ -5,13 +5,13 @@ on:
     branches:
       - master
     paths:
-      - 'codeshort-back/src/**'
+      - 'codeshort-back/**'
       - '.github/workflows/codeshort-backend-workflow.yaml'
   pull_request:
     branches:
       - master
     paths:
-      - 'codeshort-back/src/**'
+      - 'codeshort-back/**'
       - '.github/workflows/codeshort-backend-workflow.yaml'
 
 jobs:
