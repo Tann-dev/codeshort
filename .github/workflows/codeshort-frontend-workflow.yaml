@@ -54,7 +54,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/tann-dev/codeshort-frontend:${{ secrets.MAJOR_FRONR }}.${{ secrets.MINOR_FRONT }}
+        tags: ghcr.io/tann-dev/codeshort-frontend:${{ secrets.MAJOR_FRONT }}.${{ secrets.MINOR_FRONT }}
         context: codeshort-front
 
     - name: Update Minor version
