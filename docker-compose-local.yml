@@ -23,8 +23,9 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   codeshort-backend:
-    image: ghcr.io/tann-dev/codeshort-backend:latest
+    image: tannndev/codeshort-back:dev
     container_name: codeshort-backend
+    build: ./codeshort-back
     restart: always
     ports:
       - 8080:8080
@@ -39,8 +40,9 @@ services:
       - codeshort-backend-resources:/codeshort-backend-resources
       
   codeshort-front:
-    image: ghcr.io/tann-dev/codeshort-frontend:latest
+    image: tannndev/codeshort-front:dev
     container_name: codeshort-front
+    build: ./codeshort-front
     restart: always
     ports:
       - 80:80
