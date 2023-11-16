@@ -25,7 +25,9 @@ services:
   codeshort-backend:
     image: tannndev/codeshort-back:dev
     container_name: codeshort-backend
-    build: ./codeshort-back
+    build:
+      context: ./codeshort-back
+      dockerfile: /Dockerfile.local
     restart: always
     ports:
       - 8080:8080
@@ -42,7 +44,9 @@ services:
   codeshort-front:
     image: tannndev/codeshort-front:dev
     container_name: codeshort-front
-    build: ./codeshort-front
+    build:
+      context: ./codeshort-front
+      dockerfile: /Dockerfile.local
     restart: always
     ports:
       - 80:80
