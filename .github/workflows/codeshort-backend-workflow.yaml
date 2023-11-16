@@ -55,5 +55,13 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/tann-dev/codeshort-backend:latest
+        tags: ghcr.io/tann-dev/codeshort-backend:${{ secrets.MAJOR_BACK }}.${{ secrets.MINOR_BACK }}
         context: codeshort-back
+    
+    - name: Update Minor version
+      uses: hmanzur/actions-set-secret@v2.0.0
+      with:
+        name: 'MINOR_BACK'
+        value: $((${{ secrets.MINOR_BACK }}+1))
+        repository: EriksonGM/MasterReport
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
