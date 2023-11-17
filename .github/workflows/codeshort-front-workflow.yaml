@@ -69,10 +69,8 @@ jobs:
         context: codeshort-front
 
     - name: Update minor version
-      uses: ekowcharles/update-github-actions-secret@v1
-      env:
-        OWNER: ${{ github.actor }}
-        REPOSITORY: ${{ github.repository }
-        ACCESS_TOKEN:  ${{ secrets.SECRET_ACTION_ACCESS_TOKEN }}
-        SECRET_NAME: MINOR_FRONT
-        SECRET_VALUE: $((${{ secrets.MINOR_FRONT }}+1))
+      uses: kapsztajn/actions-set-secret@v/1.0.0
+      with:
+        name: 'MINOR_FRONT'
+        value: $((${{ secrets.MINOR_FRONT }}+1))
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
