@@ -31,7 +31,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Update minor version
-      uses: kapsztajn/actions-set-secret@v/1.0.0
+      uses: action-pack/set-secret@v1
       with:
         name: 'MINOR_BACK'
         value: $((${{ secrets.MINOR_BACK }}+1))
