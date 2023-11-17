@@ -14,7 +14,6 @@ on:
       - 'codeshort-front/**'
       - '.github/workflows/codeshort-front-workflow.yaml'
 
-
 env:
   REGISTRY: ghcr.io # GitHub's registry
 
