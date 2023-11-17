@@ -30,6 +30,20 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v3
 
+    - name: Update minor version
+      uses: kapsztajn/actions-set-secret@v/1.0.0
+      with:
+        name: 'MINOR_FRONT'
+        value: $((${{ secrets.MINOR_FRONT }}+1))
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY}}/${{ github.repository }}-front
+        tags: type=semver,pattern={{version}},value=1.${{ secrets.MAJOR_FRONT }}.${{ secrets.MINOR_FRONT }}
+
     - name: Use Node.js 18 LTS
       uses: actions/setup-node@v3
       with:
@@ -42,13 +56,6 @@ jobs:
     - name: Build Project
       working-directory: codeshort-front
       run: npm run buildDev
-
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.REGISTRY}}/${{ github.repository }}-front
-        tags: type=semver,pattern={{version}},value=1.${{ secrets.MAJOR_FRONT }}.${{ secrets.MINOR_FRONT }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -67,10 +74,3 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         context: codeshort-front
-
-    - name: Update minor version
-      uses: kapsztajn/actions-set-secret@v/1.0.0
-      with:
-        name: 'MINOR_FRONT'
-        value: $((${{ secrets.MINOR_FRONT }}+1))
-        token: ${{ secrets.REPO_ACCESS_TOKEN }}
