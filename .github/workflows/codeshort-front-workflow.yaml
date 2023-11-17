@@ -1,4 +1,4 @@
-name: Publish prod image frontend
+name: Publish prod image front
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
       - master
     paths:
       - 'codeshort-front/**'
-      - '.github/workflows/codeshort-frontend-workflow.yaml'
+      - '.github/workflows/codeshort-front-workflow.yaml'
   pull_request:
     branches:
       - master
     paths:
       - 'codeshort-front/**'
-      - '.github/workflows/codeshort-frontend-workflow.yaml'
+      - '.github/workflows/codeshort-front-workflow.yaml'
 
 jobs:
-  build-frontend:
+  build-front:
     
     name: Deploy Angular App
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/tann-dev/codeshort-frontend:${{ secrets.MAJOR_FRONT }}.${{ secrets.MINOR_FRONT }}
+        tags: ghcr.io/tann-dev/codeshort-front:${{ secrets.MAJOR_FRONT }}.${{ secrets.MINOR_FRONT }}
         context: codeshort-front
 
     - name: Update Minor version

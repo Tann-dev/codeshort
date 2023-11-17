@@ -1,4 +1,4 @@
-name: Publish prod image backend
+name: Publish prod image back
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
       - master
     paths:
       - 'codeshort-back/**'
-      - '.github/workflows/codeshort-backend-workflow.yaml'
+      - '.github/workflows/codeshort-back-workflow.yaml'
   pull_request:
     branches:
       - master
     paths:
       - 'codeshort-back/**'
-      - '.github/workflows/codeshort-backend-workflow.yaml'
+      - '.github/workflows/codeshort-back-workflow.yaml'
 
 jobs:
-  build-backend:
+  build-back:
 
     name: Deploy Spring Boot App
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/tann-dev/codeshort-backend:${{ secrets.MAJOR_BACK }}.${{ secrets.MINOR_BACK }}
+        tags: ghcr.io/tann-dev/codeshort-back:${{ secrets.MAJOR_BACK }}.${{ secrets.MINOR_BACK }}
         context: codeshort-back
     
     - name: Update Minor version
