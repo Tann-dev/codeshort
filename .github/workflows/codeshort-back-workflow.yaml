@@ -70,8 +70,10 @@ jobs:
         context: codeshort-back
 
     - name: Update minor version
-      uses: NikhilVashistha/update-github-action-secret@v1.0.3
-      with:
-        github_token: ${{ secrets.SECRET_ACTION_ACCESS_TOKEN }}
-        secret_name: 'MINOR_BACK'
-        secret_value: $((${{ secrets.MINOR_BACK }}+1))
+      uses: ekowcharles/update-github-actions-secret@v1
+      env:
+        OWNER: ${{ github.actor }}
+        REPOSITORY: ${{ github.repository }
+        ACCESS_TOKEN:  ${{ secrets.SECRET_ACTION_ACCESS_TOKEN }}
+        SECRET_NAME: MINOR_BACK
+        SECRET_VALUE: $((${{ secrets.MINOR_BACK }}+1))
