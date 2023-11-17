@@ -48,7 +48,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.REGISTRY}}/${{ github.repository }}
+        images: ${{ env.REGISTRY}}/${{ github.repository }}-front
         tags: type=semver,pattern={{version}},value=v1.0.0
 
     - name: Set up Docker Buildx
