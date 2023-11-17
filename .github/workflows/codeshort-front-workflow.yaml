@@ -1,4 +1,4 @@
-name: Publish prod image front
+name: Publish prod image frontend
 
 on:
   push:
