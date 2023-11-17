@@ -69,7 +69,7 @@ jobs:
         context: codeshort-front
 
     - name: Update minor version
-      uses: kapsztajn/actions-set-secret@v/1.0.0
+      uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'MINOR_FRONT'
         value: $((${{ secrets.MINOR_FRONT }}+1))

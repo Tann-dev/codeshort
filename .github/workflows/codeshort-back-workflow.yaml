@@ -72,7 +72,7 @@ jobs:
         context: codeshort-back
 
     - name: Update minor version
-      uses: kapsztajn/actions-set-secret@v/1.0.0
+      uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'MINOR_BACK'
         value: $((${{ secrets.MINOR_BACK }}+1))
