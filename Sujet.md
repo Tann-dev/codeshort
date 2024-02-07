@@ -77,4 +77,3 @@ L’application permet d’apprendre plein d’informations et divers annecdotes
 * PostgreSQL
 * SpringBoot
 * Angular
-
