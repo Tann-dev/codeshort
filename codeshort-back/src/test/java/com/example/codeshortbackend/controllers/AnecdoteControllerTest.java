@@ -51,7 +51,7 @@ public class AnecdoteControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote")
+                .post("/anecdote")
                 .content(asJsonString(CreateAnecdoteRequest.builder()
                         .content("test")
                         .topics(new ArrayList<>())
@@ -68,7 +68,7 @@ public class AnecdoteControllerTest {
         when(anecdoteService.createAnecdote(any(),any())).thenReturn(SuccessResponse.builder().build());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote")
+                .post("/anecdote")
                 .content(asJsonString(CreateAnecdoteRequest.builder()
                         .content("test")
                         .topics(new ArrayList<>())
@@ -87,7 +87,7 @@ public class AnecdoteControllerTest {
                 AnecdotesResponse.builder().anecdotes(list).build()
         );
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/anecdote/random"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/anecdote/random"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").isArray())
@@ -103,7 +103,7 @@ public class AnecdoteControllerTest {
                 AnecdotesResponse.builder().anecdotes(list).build()
         );
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/anecdote/popular"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/anecdote/popular"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").isArray())
@@ -120,7 +120,7 @@ public class AnecdoteControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/anecdote/topics")
+                        .post("/anecdote/topics")
                         .content(asJsonString(AnecdoteFromTopicsRequest.builder()
                                 .topics(new ArrayList<>())
                                 .build())
@@ -144,7 +144,7 @@ public class AnecdoteControllerTest {
                 UserAnecdoteResponse.builder().anecdotes(list).build()
         );
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/anecdote/user/test"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/anecdote/user/test"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").isArray())
@@ -157,7 +157,7 @@ public class AnecdoteControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/report")
+                .post("/anecdote/0/report")
                 .content(asJsonString(ReportAnecdoteRequest.builder()
                         .content("test")
                         .build())
@@ -173,7 +173,7 @@ public class AnecdoteControllerTest {
         when(anecdoteService.findById(any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/report")
+                .post("/anecdote/0/report")
                 .content(asJsonString(ReportAnecdoteRequest.builder()
                         .content("test")
                         .build())
@@ -190,7 +190,7 @@ public class AnecdoteControllerTest {
         when(anecdoteService.createAnecdote(any(),any())).thenReturn(SuccessResponse.builder().build());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/report")
+                .post("/anecdote/0/report")
                 .content(asJsonString(ReportAnecdoteRequest.builder()
                         .content("test")
                         .build())
@@ -204,7 +204,7 @@ public class AnecdoteControllerTest {
     public void allFromUser_shouldBadRequest() throws Exception {
         when(userService.findByUsername(anyString())).thenReturn(Optional.empty());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/anecdote/user/test"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/anecdote/user/test"))
         .andExpect(status().isBadRequest());
     }
 

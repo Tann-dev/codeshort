@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/anecdote/{anecdoteId}/comment")
+@RequestMapping("/anecdote/{anecdoteId}/comment")
 @RequiredArgsConstructor
 public class CommentController {
     private final AnecdoteService anecdoteService;

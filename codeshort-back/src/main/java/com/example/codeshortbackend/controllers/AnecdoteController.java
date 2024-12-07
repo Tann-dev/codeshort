@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/anecdote")
+@RequestMapping("/anecdote")
 @RequiredArgsConstructor
 public class AnecdoteController {
 

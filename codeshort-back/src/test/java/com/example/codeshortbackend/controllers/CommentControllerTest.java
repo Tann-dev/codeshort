@@ -75,7 +75,7 @@ public class CommentControllerTest {
         when(anecdoteService.findById(any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/anecdote/0/comment/all")
+                        .get("/anecdote/0/comment/all")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -99,7 +99,7 @@ public class CommentControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/anecdote/0/comment/all")
+                        .get("/anecdote/0/comment/all")
                 )
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.comments").exists())
@@ -112,7 +112,7 @@ public class CommentControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/comment/0/rating")
+                .post("/anecdote/0/comment/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -129,7 +129,7 @@ public class CommentControllerTest {
         when(commentService.findById(any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/comment/0/rating")
+                .post("/anecdote/0/comment/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -146,7 +146,7 @@ public class CommentControllerTest {
         when(commentService.findById(any())).thenReturn(Optional.of(new Comment()));
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/comment/0/rating")
+                .post("/anecdote/0/comment/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -167,7 +167,7 @@ public class CommentControllerTest {
 
     public MockHttpServletRequestBuilder createCommentRequest() {
         return MockMvcRequestBuilders
-                .post("/api/anecdote/0/comment")
+                .post("/anecdote/0/comment")
                 .content(asJsonString(CreateCommentRequest.builder()
                         .content("test")
                         .build())

@@ -51,7 +51,7 @@ public class FollowerControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/user")
+                .get("/user")
         ).andExpect(status().isBadRequest());
     }
 
@@ -72,7 +72,7 @@ public class FollowerControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/user")
+                .get("/user")
         )
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.usersFollowed").exists())
@@ -86,7 +86,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.of(new User()));
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/follow/username")
+                .post("/user/follow/username")
         ).andExpect(status().isBadRequest());
     }
 
@@ -96,7 +96,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/follow/username")
+                .post("/user/follow/username")
         ).andExpect(status().isBadRequest());
     }
 
@@ -107,7 +107,7 @@ public class FollowerControllerTest {
         when(followerService.existsByUserAndFollower(any(), any())).thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/follow/username")
+                .post("/user/follow/username")
         ).andExpect(status().isBadRequest());
     }
 
@@ -119,7 +119,7 @@ public class FollowerControllerTest {
         when(followerService.followUser(any(), any())).thenReturn(SuccessResponse.builder().build());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/follow/username")
+                .post("/user/follow/username")
         )
                 .andExpect(status().isOk());
     }
@@ -130,7 +130,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.of(new User()));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/user/unfollow/username")
+                        .post("/user/unfollow/username")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -140,7 +140,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/user/unfollow/username")
+                        .post("/user/unfollow/username")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -151,7 +151,7 @@ public class FollowerControllerTest {
         when(followerService.findByUserAndFollower(any(), any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/user/unfollow/username")
+                        .post("/user/unfollow/username")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -163,7 +163,7 @@ public class FollowerControllerTest {
         when(followerService.unfollowUser(any())).thenReturn(SuccessResponse.builder().build());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/user/unfollow/username")
+                        .post("/user/unfollow/username")
                 )
                 .andExpect(status().isOk());
     }
@@ -174,7 +174,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.of(new User()));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/user/username")
+                        .get("/user/username")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -185,7 +185,7 @@ public class FollowerControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/user/username")
+                        .get("/user/username")
                 )
                 .andExpect(status().isBadRequest());
     }
@@ -202,7 +202,7 @@ public class FollowerControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/user/username")
+                        .get("/user/username")
                 )
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.profilePictureURI").value("uriPicture"))

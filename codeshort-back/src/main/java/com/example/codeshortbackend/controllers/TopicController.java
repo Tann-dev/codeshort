@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/topic")
+@RequestMapping("/topic")
 @RequiredArgsConstructor
 public class TopicController {
 

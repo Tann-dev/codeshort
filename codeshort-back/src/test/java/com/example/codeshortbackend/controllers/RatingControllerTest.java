@@ -53,7 +53,7 @@ public class RatingControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/rating")
+                .post("/anecdote/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -70,7 +70,7 @@ public class RatingControllerTest {
         when(anecdoteService.findById(any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/rating")
+                .post("/anecdote/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -87,7 +87,7 @@ public class RatingControllerTest {
         when(anecdoteService.findById(any())).thenReturn(Optional.of(new Anecdote()));
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/anecdote/0/rating")
+                .post("/anecdote/0/rating")
                 .content(asJsonString(RatingRequest.builder()
                         .vote(Vote.NONE)
                         .starred(true)
@@ -103,7 +103,7 @@ public class RatingControllerTest {
         when(userService.findByUsername(any())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/anecdote/starred/username")
+                .get("/anecdote/starred/username")
         ).andExpect(status().isBadRequest());
     }
 
@@ -132,7 +132,7 @@ public class RatingControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/anecdote/starred/username")
+                .get("/anecdote/starred/username")
         ).andExpect(status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").exists())
         .andExpect(MockMvcResultMatchers.jsonPath("$.anecdotes").isArray())

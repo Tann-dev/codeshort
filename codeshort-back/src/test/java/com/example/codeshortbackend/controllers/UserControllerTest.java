@@ -50,7 +50,7 @@ public class UserControllerTest {
         MockMultipartFile firstFile = new MockMultipartFile("file", "filename.png", "text/plain", "some xml".getBytes());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .multipart("/api/user/picture")
+                .multipart("/user/picture")
                 .file(firstFile)
         ).andExpect(status().isBadRequest());
     }
@@ -63,7 +63,7 @@ public class UserControllerTest {
         MockMultipartFile firstFile = new MockMultipartFile("file", "filename.png", "text/plain", "some xml".getBytes());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .multipart("/api/user/picture")
+                .multipart("/user/picture")
                 .file(firstFile)
         ).andExpect(status().isBadRequest());
     }
@@ -76,7 +76,7 @@ public class UserControllerTest {
         MockMultipartFile firstFile = new MockMultipartFile("file", "filename.png", "text/plain", "some xml".getBytes());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .multipart("/api/user/picture")
+                .multipart("/user/picture")
                 .file(firstFile)
         ).andExpect(status().isOk());
     }
@@ -86,7 +86,7 @@ public class UserControllerTest {
         when(authenticationService.findUser()).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/topics")
+                .post("/user/topics")
                 .content(asJsonString(UserTopicsRequest.builder()
                         .topics(new ArrayList<>())
                         .build())
@@ -106,7 +106,7 @@ public class UserControllerTest {
         topics.add("test2");
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/topics")
+                .post("/user/topics")
                 .content(asJsonString(UserTopicsRequest.builder()
                         .topics(topics)
                         .build())
@@ -126,7 +126,7 @@ public class UserControllerTest {
         topics.add("test2");
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/user/topics")
+                .post("/user/topics")
                 .content(asJsonString(UserTopicsRequest.builder()
                         .topics(topics)
                         .build())

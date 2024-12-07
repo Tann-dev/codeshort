@@ -23,16 +23,16 @@ public class SecurityConfiguration {
         http.cors().and().csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**",
-                        "/api/anecdote/random",
-                        "/api/anecdote/popular",
+                .requestMatchers("/auth/**",
+                        "/anecdote/random",
+                        "/anecdote/popular",
                         "/images/**",
-                        "/api/topic",
-                        "/api/anecdote/{id}",
-                        "/api/anecdote/{id}/report",
-                        "/api/anecdote/topics",
-                        "/api/anecdote/{anecdoteId}/comment/all",
-                        "/api/anecdote/user/{username}"
+                        "/topic",
+                        "/anecdote/{id}",
+                        "/anecdote/{id}/report",
+                        "/anecdote/topics",
+                        "/anecdote/{anecdoteId}/comment/all",
+                        "/anecdote/user/{username}"
                 )
                 .permitAll()
                 .anyRequest()

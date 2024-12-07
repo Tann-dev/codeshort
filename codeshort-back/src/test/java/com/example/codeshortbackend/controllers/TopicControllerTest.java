@@ -54,7 +54,7 @@ public class TopicControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/topic")
+                        .get("/topic")
                 ).andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.topics").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.topics").isArray())

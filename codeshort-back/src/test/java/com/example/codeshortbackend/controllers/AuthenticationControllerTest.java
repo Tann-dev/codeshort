@@ -40,7 +40,7 @@ public class AuthenticationControllerTest {
         when(userService.existsByUsername(any())).thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/auth/register")
+                .post("/auth/register")
                 .content(asJsonString(RegisterRequest.builder()
                         .build())
                 )
@@ -61,7 +61,7 @@ public class AuthenticationControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/auth/register")
+                .post("/auth/register")
                 .content(asJsonString(RegisterRequest.builder()
                         .build())
                 )
@@ -78,7 +78,7 @@ public class AuthenticationControllerTest {
         when(userService.findByUsername(anyString())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/auth/authenticate")
+                        .post("/auth/authenticate")
                         .content(asJsonString(AuthenticationRequest.builder()
                                 .username("user")
                                 .password("password")
@@ -101,7 +101,7 @@ public class AuthenticationControllerTest {
         );
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/auth/authenticate")
+                        .post("/auth/authenticate")
                         .content(asJsonString(AuthenticationRequest.builder()
                                 .username("user")
                                 .password("password")
