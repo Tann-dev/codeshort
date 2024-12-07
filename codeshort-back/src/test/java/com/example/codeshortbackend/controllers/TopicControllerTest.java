@@ -1,10 +1,6 @@
 package com.example.codeshortbackend.controllers;
 
-import com.example.codeshortbackend.models.Anecdote;
 import com.example.codeshortbackend.models.Topic;
-import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.responses.AnecdoteDTO;
-import com.example.codeshortbackend.responses.AnecdotesResponse;
 import com.example.codeshortbackend.responses.TopicDTO;
 import com.example.codeshortbackend.responses.TopicsResponse;
 import com.example.codeshortbackend.services.*;
@@ -13,13 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

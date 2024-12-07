@@ -8,12 +8,7 @@ import com.example.codeshortbackend.responses.UserDTO;
 import com.example.codeshortbackend.responses.UserFollowedResponse;
 import com.example.codeshortbackend.responses.UserResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;

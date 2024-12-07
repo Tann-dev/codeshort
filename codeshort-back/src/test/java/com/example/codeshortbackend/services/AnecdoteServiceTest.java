@@ -11,14 +11,12 @@ import com.example.codeshortbackend.responses.AnecdotesResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 public class AnecdoteServiceTest {
 
     private AnecdoteService anecdoteService;

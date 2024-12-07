@@ -5,8 +5,6 @@ import com.example.codeshortbackend.repositories.CommentRepository;
 import com.example.codeshortbackend.repositories.RatingCommentRepository;
 import com.example.codeshortbackend.requests.CreateCommentRequest;
 import com.example.codeshortbackend.requests.RatingCommentRequest;
-import com.example.codeshortbackend.requests.RatingRequest;
-import com.example.codeshortbackend.responses.AnecdoteDTO;
 import com.example.codeshortbackend.responses.CommentDTO;
 import com.example.codeshortbackend.responses.CommentsResponse;
 import com.example.codeshortbackend.responses.SuccessResponse;

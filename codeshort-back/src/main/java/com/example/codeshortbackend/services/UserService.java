@@ -2,9 +2,7 @@ package com.example.codeshortbackend.services;
 
 import com.example.codeshortbackend.models.Topic;
 import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.repositories.TopicRepository;
 import com.example.codeshortbackend.repositories.UserRepository;
-import com.example.codeshortbackend.requests.UserTopicsRequest;
 import com.example.codeshortbackend.responses.SuccessResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
