@@ -1,1 +1,74 @@
 .env
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+codeshort-front/node_modules
+codeshort-front/npm-debug.log
+codeshort-front/yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.iws
+*.iml
+*.ipr
+
+# Visual Studio Code
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+codeshort-front/.angular/cache
+codeshort-front/.sass-cache/
+codeshort-front/connect.lock
+codeshort-front/coverage
+codeshort-front/libpeerconnection.log
+codeshort-front/testem.log
+codeshort-front/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+### STS ###
+codeshort-back/.apt_generated
+codeshort-back/.classpath
+codeshort-back/.factorypath
+codeshort-back/.project
+codeshort-back/.settings
+codeshort-back/.springBeans
+codeshort-back/.sts4-cache
+
+### Resources ###
+codeshort-back/codeshort-backend-resources/
+
+HELP.md
+codeshort-back/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### NetBeans ###
+codeshort-back/nbproject/private/
+codeshort-back/nbbuild/
+codeshort-back/dist/
+codeshort-back/nbdist/
+codeshort-back/.nb-gradle/
+codeshort-back/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
