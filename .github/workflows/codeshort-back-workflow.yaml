@@ -70,10 +70,3 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         context: codeshort-back
-
-    - name: Update minor version
-      uses: hmanzur/actions-set-secret@v2.0.0
-      with:
-        name: 'MINOR_BACK'
-        value: $((${{ secrets.MINOR_BACK }}+1))
-        token: ${{ secrets.REPO_ACCESS_TOKEN }}
