@@ -15,10 +15,7 @@ services:
     image: postgres:alpine
     container_name: postgres
     restart: always
-    environment:
-      - POSTGRES_USER=codeshort
-      - POSTGRES_PASSWORD=codeshort
-      - POSTGRES_DB=codeshort
+    env_file: ".env"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -30,11 +27,7 @@ services:
       - 8080:8080
     depends_on:
       - postgres
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/codeshort
-      - SPRING_DATASOURCE_USERNAME=codeshort
-      - SPRING_DATASOURCE_PASSWORD=codeshort
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    env_file: ".env"
     volumes:
       - codeshort-backend-resources:/codeshort-backend-resources
       
@@ -43,9 +36,10 @@ services:
     container_name: codeshort-front
     restart: always
     ports:
-      - 80:80
+      - 4200:80
     depends_on:
       - codeshort-backend
+    env_file: ".env"
 
 
 volumes:

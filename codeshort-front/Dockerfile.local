@@ -1,10 +1,25 @@
-FROM node:18-alpine As build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run buildDev
+###############
+### STAGE 1: Build app
+###############
+FROM node:18-alpine as build
 
+WORKDIR /usr/local/app
+# Add the source code to app
+COPY ./ /usr/local/app/
+# Install all the dependencies
+RUN npm install
+# Generate the build of the application
+RUN npm run build
+
+###############
+### STAGE 2: Serve app with nginx ###
+###############
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/codeshort-front /usr/share/nginx/html
+COPY  --from=build /usr/local/app/dist/codeshort-front /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# When the container starts, replace the env.js with values from environment variables
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.sample.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]

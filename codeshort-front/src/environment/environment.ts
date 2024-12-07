@@ -1,6 +1,5 @@
 export const environment = {
-    production: false,
-    apiKey: 'http://localhost:8080/api',
-    serverKey: 'http://localhost:8080'
+    production: (window as { [key: string]: any })['env']['production'] || false,
+    apiKey: (window as { [key: string]: any })['env']['apiKey'] || 'http://localhost:8080/api',
+    serverKey: (window as { [key: string]: any })['env']['serverKey'] || 'http://localhost:8080'
 };
-  
