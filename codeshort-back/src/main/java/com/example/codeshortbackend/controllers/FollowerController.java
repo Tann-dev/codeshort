@@ -1,20 +1,12 @@
 package com.example.codeshortbackend.controllers;
 
 import com.example.codeshortbackend.models.*;
-import com.example.codeshortbackend.repositories.FollowerRepository;
-import com.example.codeshortbackend.repositories.UserRepository;
-import com.example.codeshortbackend.requests.CreateCommentRequest;
-import com.example.codeshortbackend.responses.*;
 import com.example.codeshortbackend.services.AuthenticationService;
 import com.example.codeshortbackend.services.FollowerService;
 import com.example.codeshortbackend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")

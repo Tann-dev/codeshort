@@ -1,13 +1,7 @@
 package com.example.codeshortbackend.controllers;
 
 import com.example.codeshortbackend.models.Anecdote;
-import com.example.codeshortbackend.models.Rating;
-import com.example.codeshortbackend.models.Topic;
 import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.repositories.AnecdoteRepository;
-import com.example.codeshortbackend.repositories.RatingRepository;
-import com.example.codeshortbackend.repositories.TopicRepository;
-import com.example.codeshortbackend.repositories.UserRepository;
 import com.example.codeshortbackend.requests.CreateAnecdoteRequest;
 import com.example.codeshortbackend.requests.AnecdoteFromTopicsRequest;
 import com.example.codeshortbackend.requests.ReportAnecdoteRequest;
@@ -17,12 +11,7 @@ import com.example.codeshortbackend.services.AuthenticationService;
 import com.example.codeshortbackend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")

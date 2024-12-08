@@ -83,6 +83,13 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <environmentVariables>
+                        <SPRING_DATASOURCE_URL>jdbc:postgresql://localhost:5432/codeshort</SPRING_DATASOURCE_URL>
+                        <SPRING_DATASOURCE_USERNAME>user</SPRING_DATASOURCE_USERNAME>
+                        <SPRING_DATASOURCE_PASSWORD>password</SPRING_DATASOURCE_PASSWORD>
+                        <SPRING_JPA_HIBERNATE_DDL_AUTO>update</SPRING_JPA_HIBERNATE_DDL_AUTO>
+                        <SPRING_JPA_DATABASE>POSTGRESQL</SPRING_JPA_DATABASE>
+                    </environmentVariables>
                 </configuration>
             </plugin>
         </plugins>

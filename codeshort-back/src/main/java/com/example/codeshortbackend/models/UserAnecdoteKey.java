@@ -14,8 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-class UserAnecdoteKey implements Serializable {
-
+public class UserAnecdoteKey implements Serializable {
     @Column(name = "user_id")
     Integer userId;
 

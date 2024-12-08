@@ -2,9 +2,6 @@ package com.example.codeshortbackend.controllers;
 
 import com.example.codeshortbackend.models.Topic;
 import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.repositories.TopicRepository;
-import com.example.codeshortbackend.repositories.UserRepository;
-import com.example.codeshortbackend.requests.RegisterRequest;
 import com.example.codeshortbackend.requests.UserTopicsRequest;
 import com.example.codeshortbackend.services.AuthenticationService;
 import com.example.codeshortbackend.services.FileService;
@@ -12,7 +9,6 @@ import com.example.codeshortbackend.services.TopicService;
 import com.example.codeshortbackend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +39,6 @@ public class UserController {
                     .body("User not found");
         }
 
-        // TODO gérer si le file est en .png .jpg
         String fileName = fileService.uploadProfilePicture(file, user.get().getUsername());
         if(fileName == null) {
             return ResponseEntity

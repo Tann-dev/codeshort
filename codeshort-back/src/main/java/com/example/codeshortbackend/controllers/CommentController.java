@@ -3,17 +3,13 @@ package com.example.codeshortbackend.controllers;
 import com.example.codeshortbackend.models.Anecdote;
 import com.example.codeshortbackend.models.Comment;
 import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.repositories.AnecdoteRepository;
-import com.example.codeshortbackend.repositories.UserRepository;
 import com.example.codeshortbackend.requests.CreateCommentRequest;
 import com.example.codeshortbackend.requests.RatingCommentRequest;
-import com.example.codeshortbackend.requests.RatingRequest;
 import com.example.codeshortbackend.services.AnecdoteService;
 import com.example.codeshortbackend.services.AuthenticationService;
 import com.example.codeshortbackend.services.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;

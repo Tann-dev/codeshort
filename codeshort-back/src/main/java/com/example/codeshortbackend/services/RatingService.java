@@ -27,7 +27,7 @@ public class RatingService {
 
     public SuccessResponse rate(Anecdote anecdote, User user, RatingRequest request) {
 
-        Optional<Rating> rating = ratingRepository.findByUserAndAnecdote(user, anecdote);
+        Optional<Rating> rating = ratingRepository.findByAnecdoteAndUser(anecdote, user);
 
         if(rating.isPresent()) {
             Vote lastRating = rating.get().getVote();

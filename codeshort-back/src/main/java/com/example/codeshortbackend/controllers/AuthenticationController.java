@@ -1,8 +1,6 @@
 package com.example.codeshortbackend.controllers;
 
 import com.example.codeshortbackend.models.User;
-import com.example.codeshortbackend.repositories.UserRepository;
-import com.example.codeshortbackend.responses.AuthenticationResponse;
 import com.example.codeshortbackend.services.AuthenticationService;
 import com.example.codeshortbackend.requests.AuthenticationRequest;
 import com.example.codeshortbackend.requests.RegisterRequest;
