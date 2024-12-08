@@ -39,6 +39,10 @@ public class UserController {
                     .body("User not found");
         }
 
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("File is empty");
+        }
+
         String fileName = fileService.uploadProfilePicture(file, user.get().getUsername());
         if(fileName == null) {
             return ResponseEntity

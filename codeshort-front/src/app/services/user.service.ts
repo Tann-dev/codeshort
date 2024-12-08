@@ -35,8 +35,8 @@ export class UserService {
       }
     }
 
-    postChangePicture(file: any) {
-        var formData = new FormData();
+    postChangePicture(file: File) {
+        const  formData = new FormData();
         formData.append("file", file);
         return this.httpClient.post<any>(this.apiURL + '/user/picture' , formData)
         .pipe(

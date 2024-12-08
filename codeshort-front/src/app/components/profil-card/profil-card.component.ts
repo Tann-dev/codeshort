@@ -110,15 +110,9 @@ export class ProfilCardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != null)
-        this.sendFile(result)
-    });
-  }
-
-  sendFile(file: any) {
-    this.userService.postChangePicture(file).subscribe((data: any) => {
-      this.authentificationService.setLinkPicture(data.response);
-      this.userProps!.profilePictureURI = this.authentificationService.getLinkPicture();
+      if(result !== null)
+        this.authentificationService.setLinkPicture(result);
+        this.userProps!.profilePictureURI = this.authentificationService.getLinkPicture();
     });
   }
 }

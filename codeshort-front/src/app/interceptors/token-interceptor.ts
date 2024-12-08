@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = localStorage.getItem("token");
-        if(request.url.includes("/api/user/picture") && token) {
+        if(request.url.includes("/user/picture") && token) {
             const request_with_token = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${token}`
