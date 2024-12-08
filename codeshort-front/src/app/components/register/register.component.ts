@@ -8,9 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogFavoriteTopicsComponent } from '../dialog-favorite-topics/dialog-favorite-topics.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: false
 })
 export class RegisterComponent {
   userRegister = new FormGroup({

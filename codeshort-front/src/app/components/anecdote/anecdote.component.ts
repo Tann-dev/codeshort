@@ -7,9 +7,10 @@ import { Vote } from 'src/models/vote.model';
 import { DialogReportComponent } from '../dialog-report/dialog-report.component';
 
 @Component({
-  selector: 'app-anecdote',
-  templateUrl: './anecdote.component.html',
-  styleUrls: ['./anecdote.component.scss']
+    selector: 'app-anecdote',
+    templateUrl: './anecdote.component.html',
+    styleUrls: ['./anecdote.component.scss'],
+    standalone: false
 })
 
 export class AnecdoteComponent {

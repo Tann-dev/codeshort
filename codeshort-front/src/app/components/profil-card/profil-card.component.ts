@@ -10,9 +10,10 @@ import { UserProps } from 'src/models/user-props.model';
 import { DialogEditProfilComponent } from '../dialog-edit-profil/dialog-edit-profil.component';
 
 @Component({
-  selector: 'app-profil-card',
-  templateUrl: './profil-card.component.html',
-  styleUrls: ['./profil-card.component.scss']
+    selector: 'app-profil-card',
+    templateUrl: './profil-card.component.html',
+    styleUrls: ['./profil-card.component.scss'],
+    standalone: false
 })
 export class ProfilCardComponent implements OnInit {
   @Input() user!: string;

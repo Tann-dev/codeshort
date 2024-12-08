@@ -5,9 +5,10 @@ import { Comment } from 'src/models/comment.model';
 import { Vote } from 'src/models/vote.model';
 
 @Component({
-  selector: 'app-comment-item',
-  templateUrl: './comment-item.component.html',
-  styleUrls: ['./comment-item.component.scss']
+    selector: 'app-comment-item',
+    templateUrl: './comment-item.component.html',
+    styleUrls: ['./comment-item.component.scss'],
+    standalone: false
 })
 export class CommentItemComponent {
   @Input() comment!: Comment;

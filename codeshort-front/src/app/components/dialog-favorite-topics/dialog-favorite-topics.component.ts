@@ -4,9 +4,10 @@ import { AnecdotesService } from 'src/app/services/anecdotes.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-dialog-favorite-topics',
-  templateUrl: './dialog-favorite-topics.component.html',
-  styleUrls: ['./dialog-favorite-topics.component.scss']
+    selector: 'app-dialog-favorite-topics',
+    templateUrl: './dialog-favorite-topics.component.html',
+    styleUrls: ['./dialog-favorite-topics.component.scss'],
+    standalone: false
 })
 export class DialogFavoriteTopicsComponent {
 
