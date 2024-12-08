@@ -3,9 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-dialog-edit-profil',
-  templateUrl: './dialog-edit-profil.component.html',
-  styleUrls: ['./dialog-edit-profil.component.scss']
+    selector: 'app-dialog-edit-profil',
+    templateUrl: './dialog-edit-profil.component.html',
+    styleUrls: ['./dialog-edit-profil.component.scss'],
+    standalone: false
 })
 export class DialogEditProfilComponent {
   constructor(

@@ -4,9 +4,10 @@ import { AnecdotesService } from 'src/app/services/anecdotes.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-dialog-favorite-topics',
-  templateUrl: './dialog-favorite-topics.component.html',
-  styleUrls: ['./dialog-favorite-topics.component.scss']
+    selector: 'app-dialog-favorite-topics',
+    templateUrl: './dialog-favorite-topics.component.html',
+    styleUrls: ['./dialog-favorite-topics.component.scss'],
+    standalone: false
 })
 export class DialogFavoriteTopicsComponent {
 
@@ -31,7 +32,13 @@ export class DialogFavoriteTopicsComponent {
   }
 
   closeDialog(topics: string[]) {
-    this.dialogRef.close(topics);
+    if(!topics){
+      topics = ["Javascript", "Typescript", "Java"];
+    }
+
+    this.userService.postFavoritesTopics(topics).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   addToTopics() : void {

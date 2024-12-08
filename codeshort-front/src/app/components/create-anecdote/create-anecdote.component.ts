@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { AnecdotesService } from 'src/app/services/anecdotes.service';
 
 @Component({
-  selector: 'app-create-anecdote',
-  templateUrl: './create-anecdote.component.html',
-  styleUrls: ['./create-anecdote.component.scss']
+    selector: 'app-create-anecdote',
+    templateUrl: './create-anecdote.component.html',
+    styleUrls: ['./create-anecdote.component.scss'],
+    standalone: false
 })
 export class CreateAnecdoteComponent implements OnInit {
 

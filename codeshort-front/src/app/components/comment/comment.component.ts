@@ -8,9 +8,10 @@ import { Comment } from "src/models/comment.model";
 import { environment } from 'src/environment/environment';
 
 @Component({
-  selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss']
+    selector: 'app-comment',
+    templateUrl: './comment.component.html',
+    styleUrls: ['./comment.component.scss'],
+    standalone: false
 })
 export class CommentComponent implements OnInit, OnDestroy {
 

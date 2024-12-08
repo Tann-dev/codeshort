@@ -7,9 +7,10 @@ import { Vote } from 'src/models/vote.model';
 import { DialogReportComponent } from '../dialog-report/dialog-report.component';
 
 @Component({
-  selector: 'app-anecdote',
-  templateUrl: './anecdote.component.html',
-  styleUrls: ['./anecdote.component.scss']
+    selector: 'app-anecdote',
+    templateUrl: './anecdote.component.html',
+    styleUrls: ['./anecdote.component.scss'],
+    standalone: false
 })
 
 export class AnecdoteComponent {
@@ -78,15 +79,9 @@ export class AnecdoteComponent {
 
   report() {
     if (this.anecdote) {
-      const dialogRef = this.dialog.open(DialogReportComponent, {
+      this.dialog.open(DialogReportComponent, {
         width: '40%',
-        data: {anecdote: this.anecdote?.id}
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if(result != null && this.anecdote){
-          this.anecdotesService.reportAnecdote(this.anecdote.id, result);
-        }
+        data: {anecdote: this.anecdote.id}
       });
     }
   }

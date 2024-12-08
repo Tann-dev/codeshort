@@ -7,13 +7,15 @@ import { Anecdote } from 'src/models/anecdote.model';
 import { environment } from 'src/environment/environment';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: false
 })
 export class HeaderComponent implements OnInit {
 
   user$!: Observable<String | null>;
+  profilePictureUri$ !: Observable<String | null>;
   searchInput!: String;
   topics: String[] = [];
   searchTopics : String[] = [];
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.user$ = this.authentificationService.user$;
+    this.profilePictureUri$ = this.authentificationService.profilePictureUri$;
 
     this.anecdotesService.getAllTopics().subscribe(data => {
       data.topics.forEach((element: { name: String; }) => {

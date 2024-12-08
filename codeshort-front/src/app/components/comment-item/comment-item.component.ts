@@ -3,17 +3,26 @@ import { Router } from '@angular/router';
 import { AnecdotesService } from 'src/app/services/anecdotes.service';
 import { Comment } from 'src/models/comment.model';
 import { Vote } from 'src/models/vote.model';
+import { environment } from 'src/environment/environment';
 
 @Component({
-  selector: 'app-comment-item',
-  templateUrl: './comment-item.component.html',
-  styleUrls: ['./comment-item.component.scss']
+    selector: 'app-comment-item',
+    templateUrl: './comment-item.component.html',
+    styleUrls: ['./comment-item.component.scss'],
+    standalone: false
 })
 export class CommentItemComponent {
   @Input() comment!: Comment;
   @Input() anecdoteId!: number;
 
   constructor ( private router : Router, private anecdoteService : AnecdotesService) {}
+
+  get pictureUri(): string {
+    if (this.comment.authorPicture) {
+      return environment.serverKey + "/images/" + this.comment.authorPicture;
+    }
+    return "../../../assets/images/user.svg";
+  }
 
   upvoteClicked() {
     if (this.comment) {

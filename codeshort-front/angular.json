@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "codeshort-front:build:production"
+              "buildTarget": "codeshort-front:build:production"
             },
             "development": {
-              "browserTarget": "codeshort-front:build:development"
+              "buildTarget": "codeshort-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "codeshort-front:build"
+            "buildTarget": "codeshort-front:build"
           }
         },
         "test": {
@@ -96,7 +96,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@picocss/pico/css/pico.min.css"
             ],
             "scripts": []
           }

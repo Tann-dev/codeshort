@@ -8,9 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogFavoriteTopicsComponent } from '../dialog-favorite-topics/dialog-favorite-topics.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: false
 })
 export class RegisterComponent {
   userRegister = new FormGroup({
@@ -44,18 +45,10 @@ export class RegisterComponent {
       localStorage.setItem('pictureUri',"../../../assets/images/user.svg");
       this.authenticationService.setUser(username!);
 
-      const dialogRef = this.dialog.open(DialogFavoriteTopicsComponent, {
+      this.dialog.open(DialogFavoriteTopicsComponent, {
         width: '40%',
         disableClose: true
       });
-      
-      dialogRef.afterClosed().subscribe((result) => {
-        if(result != null){
-          this.userService.postFavoritesTopics(result);
-        }else{
-          this.userService.postFavoritesTopics(["Javascript", "Typescript", "Java"]);
-        }
-      })
 
       this.router.navigateByUrl('/home');
     });

@@ -46,7 +46,7 @@ export class UserService {
 
     postFavoritesTopics(topics: string[]) {
 
-      var request = {
+      const request = {
         topics: topics,
       }
 

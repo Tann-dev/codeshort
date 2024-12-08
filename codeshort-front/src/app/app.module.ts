@@ -10,7 +10,7 @@ import { AnecdoteComponent } from './components/anecdote/anecdote.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ProfilComponent } from './components/profil/profil.component';
 import { CreateAnecdoteComponent } from './components/create-anecdote/create-anecdote.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
@@ -24,36 +24,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogReportComponent } from './components/dialog-report/dialog-report.component';
 import { DialogFavoriteTopicsComponent } from './components/dialog-favorite-topics/dialog-favorite-topics.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    AnecdoteComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfilComponent,
-    CreateAnecdoteComponent,
-    ProfilCardComponent,
-    CommentComponent,
-    CommentItemComponent,
-    DialogEditProfilComponent,
-    DialogReportComponent,
-    DialogFavoriteTopicsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    MatDialogModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ExpiredTokenInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent,
+        AnecdoteComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfilComponent,
+        CreateAnecdoteComponent,
+        ProfilCardComponent,
+        CommentComponent,
+        CommentItemComponent,
+        DialogEditProfilComponent,
+        DialogReportComponent,
+        DialogFavoriteTopicsComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatDialogModule,
+        ReactiveFormsModule], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ExpiredTokenInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

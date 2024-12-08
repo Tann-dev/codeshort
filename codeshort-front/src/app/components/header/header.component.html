@@ -15,19 +15,18 @@
             </button>
         </div>
     </ul>
-    <ul *ngIf="user$ | async; else elseBlock">
-        <li (click)="goToProfil()" class="profil">
-            <img [src]="authentificationService.getLinkPicture()" class="profil">
-            {{ user$ | async }}
-        </li>
-    </ul>
-    <ng-template #elseBlock>
-        <ul>
+    <ul>
+        @if (user$ && profilePictureUri$ | async) {
+            <li (click)="goToProfil()" class="profil">
+                <img [src]="profilePictureUri$ | async" class="profil">
+                {{ user$ | async }}
+            </li>
+        } @else {
             <li class="profil">
                 <button (click)="goToLogin()" class="goToLogin">Se connecter</button>
             </li>
-        </ul>        
-    </ng-template>
+        }
+    </ul>
 </nav>
 
 <div class="children">

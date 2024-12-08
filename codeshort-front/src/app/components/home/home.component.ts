@@ -9,31 +9,33 @@ import { environment } from 'src/environment/environment';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('transition', [
-      state('top', style({})),
-      state('inview', style({})),
-      state('bottom', style({})),
-      transition('inview => bottom', [
-        animate('1000ms ease-in-out', keyframes([
-          style({ opacity: 1, offset: 0 }),
-          style({ opacity: 0, offset: 0.4 }),
-          style({ opacity: 0, offset: 0.6 }),
-          style({ opacity: 1, offset: 1 }),
-        ]))
-      ]),
-      transition('inview => top', [
-        animate('1000ms ease-in-out', keyframes([
-          style({ opacity: 1, offset: 0 }),
-          style({ opacity: 0, offset: 0.4 }),
-          style({ opacity: 0, offset: 0.6 }),
-          style({ opacity: 1, offset: 1 }),
-        ]))
-      ])
-    ])]
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    animations: [
+        trigger('transition', [
+            state('top', style({})),
+            state('inview', style({})),
+            state('bottom', style({})),
+            transition('inview => bottom', [
+                animate('1000ms ease-in-out', keyframes([
+                    style({ opacity: 1, offset: 0 }),
+                    style({ opacity: 0, offset: 0.4 }),
+                    style({ opacity: 0, offset: 0.6 }),
+                    style({ opacity: 1, offset: 1 }),
+                ]))
+            ]),
+            transition('inview => top', [
+                animate('1000ms ease-in-out', keyframes([
+                    style({ opacity: 1, offset: 0 }),
+                    style({ opacity: 0, offset: 0.4 }),
+                    style({ opacity: 0, offset: 0.6 }),
+                    style({ opacity: 1, offset: 1 }),
+                ]))
+            ])
+        ])
+    ],
+    standalone: false
 })
 
 export class HomeComponent implements OnInit {

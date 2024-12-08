@@ -5,9 +5,10 @@ import { Anecdote } from 'src/models/anecdote.model';
 import { ProfilCardComponent } from '../profil-card/profil-card.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+    selector: 'app-profil',
+    templateUrl: './profil.component.html',
+    styleUrls: ['./profil.component.scss'],
+    standalone: false
 })
 export class ProfilComponent implements OnInit, AfterViewInit {
 
