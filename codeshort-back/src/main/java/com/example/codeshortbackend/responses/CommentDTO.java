@@ -16,6 +16,7 @@ public class CommentDTO {
     Integer id;
     String content;
     String author;
+    String authorPicture;
     Integer upvotes;
     Integer downvotes;
     Vote vote;
@@ -23,6 +24,7 @@ public class CommentDTO {
     public CommentDTO(Comment comment) {
         this.id = comment.getId();
         this.author = comment.getUser().getUsername();
+        this.authorPicture = comment.getUser().getPictureUri();
         this.content = comment.getComment();
         this.upvotes = comment.getUpvotes();
         this.downvotes = comment.getDownvotes();
@@ -32,6 +34,7 @@ public class CommentDTO {
     public CommentDTO(RatingComment ratingComment) {
         this.id = ratingComment.getComment().getId();
         this.author = ratingComment.getComment().getUser().getUsername();
+        this.authorPicture = ratingComment.getComment().getUser().getPictureUri();
         this.content = ratingComment.getComment().getComment();
         this.upvotes = ratingComment.getComment().getUpvotes();
         this.downvotes = ratingComment.getComment().getDownvotes();

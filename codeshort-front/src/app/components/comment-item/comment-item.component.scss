@@ -11,8 +11,14 @@
 }
 
 .icon {
+    object-fit: cover;
     width: 25px;
     height: 25px;
+    border-radius: 50%;
+}
+
+.user {
+    margin-left: 10px;
 }
 
 .text {

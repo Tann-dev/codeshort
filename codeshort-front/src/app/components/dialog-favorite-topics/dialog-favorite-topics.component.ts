@@ -32,7 +32,13 @@ export class DialogFavoriteTopicsComponent {
   }
 
   closeDialog(topics: string[]) {
-    this.dialogRef.close(topics);
+    if(!topics){
+      topics = ["Javascript", "Typescript", "Java"];
+    }
+
+    this.userService.postFavoritesTopics(topics).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   addToTopics() : void {

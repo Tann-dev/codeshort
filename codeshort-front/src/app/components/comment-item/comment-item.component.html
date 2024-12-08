@@ -14,7 +14,7 @@
             {{ comment.downvotes }}
         </div>  
         <div (click)="goToProfil()" class="user">
-            <img class="icon" src="../../../assets/images/user.svg"/>
+            <img class="icon" [src]="pictureUri"/>
             {{ comment.author }}
         </div>
     </div>

@@ -15,6 +15,7 @@ import { environment } from 'src/environment/environment';
 export class HeaderComponent implements OnInit {
 
   user$!: Observable<String | null>;
+  profilePictureUri$ !: Observable<String | null>;
   searchInput!: String;
   topics: String[] = [];
   searchTopics : String[] = [];
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.user$ = this.authentificationService.user$;
+    this.profilePictureUri$ = this.authentificationService.profilePictureUri$;
 
     this.anecdotesService.getAllTopics().subscribe(data => {
       data.topics.forEach((element: { name: String; }) => {

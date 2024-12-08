@@ -1,6 +1,6 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BehaviorSubject } from 'rxjs';
 import { AnecdotesService } from 'src/app/services/anecdotes.service';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +18,7 @@ import { DialogEditProfilComponent } from '../dialog-edit-profil/dialog-edit-pro
 export class ProfilCardComponent implements OnInit {
   @Input() user!: string;
   anecdotes = new BehaviorSubject<Anecdote[] | null>(null);
-  me: string | null = this.authentificationService.getUser();
+  me: string | null = null;
   starredFilter!: boolean;
   userProps: UserProps | null = null;
 
@@ -30,7 +30,7 @@ export class ProfilCardComponent implements OnInit {
   ngOnInit(): void {
     this.starredFilter = false;
     this.getAll();
-    console.log(this.user)
+    this.me = this.authentificationService.getUser();
     this.userService.getUserProps(this.user).subscribe(data => {
       if(data.profilePictureURI)
         data.profilePictureURI = environment.serverKey + "/images/" + data.profilePictureURI;

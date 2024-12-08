@@ -45,18 +45,10 @@ export class RegisterComponent {
       localStorage.setItem('pictureUri',"../../../assets/images/user.svg");
       this.authenticationService.setUser(username!);
 
-      const dialogRef = this.dialog.open(DialogFavoriteTopicsComponent, {
+      this.dialog.open(DialogFavoriteTopicsComponent, {
         width: '40%',
         disableClose: true
       });
-      
-      dialogRef.afterClosed().subscribe((result) => {
-        if(result != null){
-          this.userService.postFavoritesTopics(result);
-        }else{
-          this.userService.postFavoritesTopics(["Javascript", "Typescript", "Java"]);
-        }
-      })
 
       this.router.navigateByUrl('/home');
     });
